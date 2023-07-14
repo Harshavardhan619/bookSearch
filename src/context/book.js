@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useCallback } from "react";
 
 
-const BookContext = createContext();
+const BooksContext = createContext();
 
 function Provider({children}) {
    
@@ -58,21 +58,22 @@ const editBookById = async (id, newTitle) =>{
        response.data
      ];
      setBooks(updatedBooks);
-     console.log(books);
+    //  console.log(books);
     }
      const valueToShare = {
-       books,
+       
        fetchBooks,
        createBook,
        deleteBookById,
+       books,
        editBookById
 
-     }
+     };
 
     return (
-    <BookContext.Provider value={{valueToShare}}>
+    <BooksContext.Provider value={valueToShare}>
        {children}
-    </BookContext.Provider >
+    </BooksContext.Provider >
 
     )
     
@@ -82,5 +83,5 @@ const editBookById = async (id, newTitle) =>{
 
 
 
-export default Provider;
-export  {BookContext};
+export {Provider};
+export  default BooksContext ;
